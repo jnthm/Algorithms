@@ -2,7 +2,7 @@ package linkedlists
 
 case class SingleLinkedListNode(elem: Int, var next: SingleLinkedListNode)
 
-class ReverseList {
+class ReverseLists {
 
   def reverseList(L: SingleLinkedListNode): SingleLinkedListNode = {
     var currNode = L
