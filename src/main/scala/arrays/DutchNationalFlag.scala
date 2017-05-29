@@ -1,0 +1,6 @@
+package arrays
+
+object DutchNationalFlag {
+
+
+}
