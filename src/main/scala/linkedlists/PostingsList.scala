@@ -7,7 +7,7 @@ class CopyingPostingsList {
   def copyPostingsList(L: PostingListNode): PostingListNode = {
     if (L == null) return null
 
-    var copyOfL: PostingListNode = _
+    var copyOfL: PostingListNode = null
     var iter = L
 
     while (iter != null) {

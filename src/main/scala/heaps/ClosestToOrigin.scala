@@ -3,30 +3,26 @@ package heaps
 import scala.collection.mutable.ListBuffer
 
 
-case class Star(x: Int, y: Int, z: Int) {
+case class Star(x: Int, y: Int, z: Int) extends Ordered[Star] {
   def distance: Double = {
     math.sqrt(x * x + y * y + z * z)
   }
-}
 
-object StarOrdering extends Ordering[Star] {
-  val origin = Star(0, 0, 0)
-
-  override def compare(x: Star, y: Star) = x.distance.compare(y.distance)
+  def compare(that: Star): Int = this.distance.compare(that.distance)
 }
 
 
 class ClosestToOrigin {
 
   def findClosestStarsToOrigin(stars: Iterator[Star], k: Int): List[Star] = {
-    val maxHeap = scala.collection.mutable.PriorityQueue[Star]()(StarOrdering)
+    val maxHeap = scala.collection.mutable.PriorityQueue[Star]()
     while (stars.hasNext) {
       maxHeap += stars.next()
       if (maxHeap.size > k) {
         maxHeap.dequeue()
       }
     }
-    maxHeap.toList.sorted(StarOrdering)
+    maxHeap.toList.sorted
   }
 }
 

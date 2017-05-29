@@ -8,7 +8,7 @@ class KLargestElementsBinaryHeap {
   case class HeapNode(arrayIndex: Int, elem: Int)
 
   def kLargestInBinaryHeap(heapArray: Array[Int], k: Int): ArrayBuffer[Int] = {
-    val resultBuffer = ArrayBuffer[Int]()
+    val resultBuffer = new ArrayBuffer[Int](k)
     if (heapArray.isEmpty || heapArray.length < k) return resultBuffer
     val resultHeap = scala.collection.mutable.PriorityQueue[HeapNode]()(Ordering.by[HeapNode, Int](_.elem))
     resultHeap += HeapNode(0, heapArray(0))
@@ -17,9 +17,9 @@ class KLargestElementsBinaryHeap {
       val heapNode = resultHeap.dequeue()
       resultBuffer += heapNode.elem
       val nextIndices = (2 * heapNode.arrayIndex + 1, 2 * heapNode.arrayIndex + 2)
-      if (nextIndices._1 < heapArray.length && resultHeap.size < k)
+      if (nextIndices._1 < heapArray.length)
         resultHeap += HeapNode(nextIndices._1, heapArray(nextIndices._1))
-      if (nextIndices._2 < heapArray.length && resultHeap.size < k)
+      if (nextIndices._2 < heapArray.length)
         resultHeap += HeapNode(nextIndices._2, heapArray(nextIndices._2))
     }
     resultBuffer

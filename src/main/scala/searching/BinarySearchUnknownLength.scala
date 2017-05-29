@@ -2,7 +2,7 @@ package searching
 
 object BinarySearchUnknownLength extends App {
 
-  def binarySearchUnknownLength(inputArray: Array[Int], k: Int): Unit = {
+  def binarySearchUnknownLength(inputArray: Array[Int], k: Int): Int = {
     var p = 0
     var start = 0
     var end = 0

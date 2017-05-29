@@ -1,14 +1,16 @@
 package hashmaps
 
+import scala.collection.mutable.ListBuffer
+
 object Anagrams extends App{
 
-  def findAnagrams(A: List[String]): Seq[Seq[String]] = {
-    val finalMap = scala.collection.mutable.Map[String, List[String]]()
+  def findAnagrams(A: List[String]): Seq[ListBuffer[String]] = {
+    val finalMap = scala.collection.mutable.Map[String, ListBuffer[String]]()
     A.foreach {
       case (e : String) =>
         val sortedE = e.sorted
-        val existingVal = finalMap.getOrElse(sortedE, List[String]())
-        finalMap.put(sortedE, e :: existingVal)
+        val existingVal = finalMap.getOrElse(sortedE, ListBuffer[String]())
+        finalMap.put(sortedE, existingVal += e)
     }
     finalMap.values.filter(_.length > 1).toSeq
   }

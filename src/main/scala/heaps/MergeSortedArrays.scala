@@ -6,10 +6,12 @@ import scala.collection.mutable.ArrayBuffer
 
 class MergeSortedArrays {
 
-  case class HeapNode(arrayId: Int, elem: Int, arrayOffset: Int)
+  case class HeapNode(arrayId: Int, elem: Int, arrayOffset: Int) extends Ordered[HeapNode] {
+    override def compare(that: HeapNode) = that.elem.compare(this.elem)
+  }
 
   def mergeSortedArrays(sortedArrays: Array[Array[Int]]): ArrayBuffer[Int] = {
-    val minHeap = scala.collection.mutable.PriorityQueue[HeapNode]()(Ordering.by[HeapNode, Int](_.elem).reverse)
+    val minHeap = scala.collection.mutable.PriorityQueue[HeapNode]()
 
     val resultBuffer = ArrayBuffer[Int]()
 

@@ -26,14 +26,14 @@ class LRUCacheImpl(capacity: Int) extends LRUCache {
   head.next = Some(tail)
   tail.prev = Some(head)
 
-  def addNodeToHead(node: Node): Unit = {
+  private def addNodeToHead(node: Node): Unit = {
     node.prev = Some(head)
     node.next = head.next
     head.next = Some(node)
     node.next.get.prev = Some(node)
   }
 
-  def deleteNode(node: Node): Unit = {
+  private def deleteNode(node: Node): Unit = {
     node.prev.get.next = node.next
     node.next.get.prev = node.prev
   }

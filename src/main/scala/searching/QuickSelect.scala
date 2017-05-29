@@ -55,6 +55,6 @@ object QuickSelect extends App {
 
 
   val arr = ArrayBuffer(7, 8, 5, 6, 2, 1, 3, 4, 9)
-  quickSelect(arr, 2)
+  quickSelect(arr, 4)
   println(arr.toString())
 }
